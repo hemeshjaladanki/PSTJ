@@ -17,7 +17,7 @@ class MatrixRotation {
      */
 
     public static void matrixRotation(List<List<Integer>> matrix, int r) {
-    // Write your code herestatic void matrixRotation(List<List<Integer>> matrix, int r) {
+    // Write your code here
     int m = matrix.size();
     int n = matrix.get(0).size();
 
@@ -31,48 +31,38 @@ class MatrixRotation {
         int bottom = m - 1 - layer;
         int right = n - 1 - layer;
 
-        // top row
         for (int j = left; j <= right; j++)
             ring.add(matrix.get(top).get(j));
 
-        // right column
         for (int i = top + 1; i < bottom; i++)
             ring.add(matrix.get(i).get(right));
 
-        // bottom row
         for (int j = right; j >= left; j--)
             ring.add(matrix.get(bottom).get(j));
 
-        // left column
         for (int i = bottom - 1; i > top; i--)
             ring.add(matrix.get(i).get(left));
 
         int len = ring.size();
         int rot = r % len;
 
-        // rotate anticlockwise
         Collections.rotate(ring, -rot);
 
         int idx = 0;
 
-        // put back top row
         for (int j = left; j <= right; j++)
             matrix.get(top).set(j, ring.get(idx++));
 
-        // put back right column
         for (int i = top + 1; i < bottom; i++)
             matrix.get(i).set(right, ring.get(idx++));
 
-        // put back bottom row
         for (int j = right; j >= left; j--)
             matrix.get(bottom).set(j, ring.get(idx++));
 
-        // put back left column
         for (int i = bottom - 1; i > top; i--)
             matrix.get(i).set(left, ring.get(idx++));
     }
 
-    // print result
     for (List<Integer> row : matrix) {
         for (int val : row) {
             System.out.print(val + " ");
@@ -118,3 +108,4 @@ public class Solution {
         bufferedReader.close();
     }
 }
+
